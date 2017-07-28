@@ -1,0 +1,87 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Income</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let income of incomes">
+              <td class="col-sm-2"> {{income.name}}</td>
+              <td class="col-sm-2"> {{income.value}}</td>
+              <td class="col-sm-2"> {{income.description}}</td>
+              <td class="col-sm-2">
+                <button class="btn btn-primary full-width">Edit</button>
+                <button class="btn btn-danger full-width" (click)="deleteItemFromIncomes(income.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Outcome</div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Amount</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let outcome of outcomes">
+              <td class="col-sm-2"> {{outcome.name}}</td>
+              <td class="col-sm-2"> {{outcome.value}}</td>
+              <td class="col-sm-2"> {{outcome.description}}</td>
+              <td class="col-sm-2">
+                <button class="btn btn-primary full-width">Edit</button>
+                <button class="btn btn-danger full-width" (click)="deleteItemFromOutcomes(outcome.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal></app-modal>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 vcenter">
+      <button class="btn btn-primary" (click)="onClick()">Add Income</button>
+    </div>
+    <div class="col-sm-6 vcenter">
+      <button class="btn btn-primary">Add Expense</button>
+    </div>
+  </div>
+</div>
+<!---
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-1">
+      <label for="name">Name</label>
+      <label for="amount">Amount</label>
+      <label for="description">Description</label>
+    </div>
+    <div class="col-sm-3">
+      <input type="text" name="name">
+      <input type="number" name="amount">
+      <input type="text" name="description">        
+    </div>
+  </div>
+</div>
+
+-->
