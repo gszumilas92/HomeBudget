@@ -1,8 +1,10 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from "@angular/forms";
 import { WeekService } from "../manage-weeks.service";
+
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-modal',
@@ -12,21 +14,31 @@ import { WeekService } from "../manage-weeks.service";
 export class ModalComponent implements OnInit {
 
   closeResult: string;
+  incomes
+  outcomes
 
   constructor(private modalService: NgbModal, private weekService: WeekService) {}
 
+  addItem(form: NgForm) {
+    if(form.value.type==="income"){
+      this.weekService.addIncome(form.value)
+    } else {
+      this.weekService.addOutcome(form.value)
+    }
+  }
+
   ngOnInit() {
-
+    //TODO change interval to something else
+    const checkForUpdates = Observable.interval(300);
+    checkForUpdates.subscribe(
+      () => {
+        this.weekService.getOutcomes().then(outcomes => this.outcomes = outcomes);
+        this.weekService.getIncomes().then(incomes => this.incomes = incomes);
+      }
+    )
   }
 
-  onIncomesChanged () {
-    this.weekService.incomesChanged.emit()
-  }
-
-  addIncome(form: NgForm) {
-    this.weekService.addIncome(form.value)
-  }
-
+  //MODAL COMPONENT
   open(content) {
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -44,8 +56,6 @@ export class ModalComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
-
 
 }
 

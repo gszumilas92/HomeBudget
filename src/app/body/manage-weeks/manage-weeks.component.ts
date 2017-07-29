@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { WeekService } from "./manage-weeks.service";
 
+import { Observable } from "rxjs/Observable";
+import 'rxjs/Rx';
+
 
 @Component({
   selector: 'app-manage-weeks',
@@ -15,7 +18,7 @@ export class ManageWeeksComponent implements OnInit {
   constructor(private weekService: WeekService) {
 
   }
-  
+
   getIncomes() {
     this.weekService.getIncomes().then(incomes => this.incomes = incomes);
   }
@@ -24,30 +27,27 @@ export class ManageWeeksComponent implements OnInit {
     this.weekService.getOutcomes().then(outcomes => this.outcomes = outcomes);
   }
 
-  ngOnInit() {
-    this.getIncomes()
-    this.getOutcomes()
-  }
-
   deleteItemFromIncomes(id) {
-    this.incomes = this.incomes.filter(item => id !== item.id)
+    this.weekService.deleteIncome(id)
   }
 
   deleteItemFromOutcomes(id) {
-    this.outcomes = this.outcomes.filter(item => id !== item.id)
+    this.weekService.deleteOutcome(id)
   }
 
+  //Lifecycle Hooks
+  ngOnInit() {
+    this.getIncomes()
+    this.getOutcomes()
 
-
-  openModal() {
-    
+    //TODO change interval to something else
+    const checkForUpdates = Observable.interval(300);
+    checkForUpdates.subscribe(
+      () => {
+        this.getIncomes()
+        this.getOutcomes()
+      }
+    )
   }
 
-  onAddIncome(income) {
-    
-  }
-
-  editItem() {
-
-  }
 }

@@ -42,13 +42,20 @@ export class WeekService {
   }
 
   addIncome(income){
-    income.id = this.incomes[this.incomes.length - 1].id + 1
+    income.id = this.incomes.length
     this.incomes.push(income)
-    console.log(this.incomes)
   }
 
   addOutcome(outcome){
     outcome.id = this.outcomes[this.outcomes.length - 1].id + 1
     this.outcomes.push(outcome)
+  }
+
+  deleteIncome(id){
+    this.incomes = this.incomes.filter(item => id !== item.id)
+  }
+
+  deleteOutcome(id){
+    this.outcomes = this.outcomes.filter(item => id !== item.id)
   }
 }
