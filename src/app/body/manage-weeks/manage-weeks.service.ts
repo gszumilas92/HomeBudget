@@ -1,7 +1,8 @@
-import { EventEmitter, Output } from "@angular/core";
+import { EventEmitter } from "@angular/core";
 
 export class WeekService {
     
+    incomesChanged = new EventEmitter();
 
     private incomes = [
         {
@@ -32,17 +33,18 @@ export class WeekService {
         }
   ]
 
-  getIncomes(){
-      return [...this.incomes];
+  getIncomes() {
+      return Promise.resolve([...this.incomes]);
   }
 
   getOutcomes(){
-      return [...this.outcomes];
+      return Promise.resolve([...this.outcomes]);
   }
 
   addIncome(income){
     income.id = this.incomes[this.incomes.length - 1].id + 1
     this.incomes.push(income)
+    console.log(this.incomes)
   }
 
   addOutcome(outcome){

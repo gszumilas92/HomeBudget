@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from "@angular/forms";
@@ -19,12 +19,12 @@ export class ModalComponent implements OnInit {
 
   }
 
-  onSubmit(form: NgForm) {
-    if(form.value.amount >= 0) {
-      this.weekService.addIncome(form.value)
-    } else {
-      this.weekService.addOutcome(form.value)
-    }
+  onIncomesChanged () {
+    this.weekService.incomesChanged.emit()
+  }
+
+  addIncome(form: NgForm) {
+    this.weekService.addIncome(form.value)
   }
 
   open(content) {

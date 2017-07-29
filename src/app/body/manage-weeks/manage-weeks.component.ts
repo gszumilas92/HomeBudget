@@ -16,9 +16,17 @@ export class ManageWeeksComponent implements OnInit {
 
   }
   
+  getIncomes() {
+    this.weekService.getIncomes().then(incomes => this.incomes = incomes);
+  }
+
+  getOutcomes() {
+    this.weekService.getOutcomes().then(outcomes => this.outcomes = outcomes);
+  }
+
   ngOnInit() {
-    this.incomes = this.weekService.getIncomes();
-    this.outcomes = this.weekService.getOutcomes();
+    this.getIncomes()
+    this.getOutcomes()
   }
 
   deleteItemFromIncomes(id) {
@@ -29,11 +37,13 @@ export class ManageWeeksComponent implements OnInit {
     this.outcomes = this.outcomes.filter(item => id !== item.id)
   }
 
+
+
   openModal() {
     
   }
 
-  addItem() {
+  onAddIncome(income) {
     
   }
 

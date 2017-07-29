@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form (ngSubmit)="addIncome(f)" #f="ngForm">
       <div class="row">
         <div class="col-sm-6 flex-column">
           <label for="name">Name</label>
@@ -14,14 +14,14 @@
           <label for="description">Description</label>
         </div>
         <div class="col-sm-6 flex-column">
-          <input type="text" name="name" id="name" ngModel>
-          <input type="number" name="amount" id="amount" ngModel>
-          <input type="text" name="description" id="description" ngModel>        
+          <input type="text" name="name" id="name" ngModel required>
+          <input type="number" name="amount" id="amount" ngModel required pattern="^[1-9]+[0-9]*$">
+          <input type="text" name="description" id="description" ngModel required>        
         </div>
       </div>
       <div class="row">
         <div class="col-sm-12 vcenter">
-          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Submit</button>
         </div>
       </div>
     </form>
