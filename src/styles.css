@@ -9,7 +9,31 @@ ul,li {
     justify-content: center;
 }
 
+.flex-spaceBetween {
+    display:flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.flex-spaceAround {
+    display:flex;
+    justify-content: space-around;
+    flex-direction: row;    
+}
+
 .flex-column {
     display: flex;
+    align-items: center;
     flex-direction: column;
+}
+
+.flex-row {
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+/*Modal for adding incomes/outcomes class (500px default)*/
+.modal-dialog {
+    max-width: 380px;
 }

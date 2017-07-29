@@ -56,7 +56,7 @@ export class ModalComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
-
+  //END OF MODAL COMPONENT
 }
 
 
