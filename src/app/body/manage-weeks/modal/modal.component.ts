@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { NgForm } from "@angular/forms";
@@ -13,11 +13,12 @@ import { Observable } from "rxjs/Observable";
 })
 export class ModalComponent implements OnInit {
 
-  closeResult: string;
   incomes
   outcomes
 
   constructor(private modalService: NgbModal, private weekService: WeekService) {}
+
+
 
   addItem(form: NgForm) {
     if(form.value.type==="income"){
@@ -25,38 +26,18 @@ export class ModalComponent implements OnInit {
     } else {
       this.weekService.addOutcome(form.value)
     }
+    //Send Data
+    this.weekService.incomesChanged.next(form.value);
   }
 
   ngOnInit() {
-    //TODO change interval to something else
-    const checkForUpdates = Observable.interval(300);
-    checkForUpdates.subscribe(
-      () => {
-        this.weekService.getOutcomes().then(outcomes => this.outcomes = outcomes);
-        this.weekService.getIncomes().then(incomes => this.incomes = incomes);
-      }
-    )
+ 
   }
 
   //MODAL COMPONENT
   open(content) {
-    this.modalService.open(content).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
+    this.modalService.open(content)
   }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return  `with: ${reason}`;
-    }
-  }
-  //END OF MODAL COMPONENT
 }
 
 

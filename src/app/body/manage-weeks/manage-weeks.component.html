@@ -1,56 +1,66 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">Income</div>
-        <table class="table">
+    <div class="col-xl-6">
+        <table class="table table-bordered">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Amount</th>
-              <th>Description</th>
-              <th></th>
+              <th colspan="5" class="centerText">Incomes</th>
+            </tr>
+            <tr>
+              <th class="centerText">Name</th>
+              <th class="centerText">Amount</th>
+              <th class="centerText">Description</th>
+              <th colspan="2" class="centerText">Manage</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             <tr *ngFor="let income of incomes">
-              <td class="col-sm-2"> {{income.name}}</td>
-              <td class="col-sm-2"> {{income.value}}</td>
-              <td class="col-sm-2"> {{income.description}}</td>
-              <td class="col-sm-2">
+              <td class="centerText">{{income.name}}</td>
+              <td class="centerText">{{income.value}}</td>
+              <td class="centerText">{{income.description}}</td>
+              <td>
                 <button class="btn btn-primary full-width">Edit</button>
+              </td>
+              <td>
                 <button class="btn btn-danger full-width" (click)="deleteItemFromIncomes(income.id)">Delete</button>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
-    <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">Outcome</div>
-        <table class="table">
-          <thead>
+    <div class="col-xl-6">
+        <table class="table table-bordered">
+          <thead >
             <tr>
-              <th>Name</th>
-              <th>Amount</th>
-              <th>Description</th>
-              <th></th>
+              <th colspan="5" class="centerText">Outcomes</th>
+            </tr>
+            <tr>
+              <th class="centerText">Name</th>
+              <th class="centerText">Amount</th>
+              <th class="centerText">Description</th>
+              <th colspan="2" class="centerText">Manage</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             <tr *ngFor="let outcome of outcomes">
-              <td class="col-sm-2"> {{outcome.name}}</td>
-              <td class="col-sm-2"> {{outcome.value}}</td>
-              <td class="col-sm-2"> {{outcome.description}}</td>
-              <td class="col-sm-2">
-                <button class="btn btn-primary full-width">Edit</button>
-                <button class="btn btn-danger full-width" (click)="deleteItemFromOutcomes(outcome.id)">Delete</button>
+              <td class="centerText">{{outcome.name}}</td>
+              <td class="centerText">{{outcome.value}}</td>
+              <td class="centerText">{{outcome.description}}</td>
+              <td>
+                <button 
+                  class="btn btn-primary full-width"
+                  (click)="editOutcome(id)">Edit
+                </button>
+              </td>
+              <td>
+                <button 
+                  class="btn btn-danger full-width" 
+                  (click)="deleteItemFromOutcomes(outcome.id)">Delete
+                </button>
               </td>
             </tr>
           </tbody>
         </table>
-      </div>
     </div>
   </div>
 </div>

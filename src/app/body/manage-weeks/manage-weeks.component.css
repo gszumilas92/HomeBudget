@@ -8,3 +8,7 @@ thead th {
 tbody th {
     font-weight: 300; 
 }
+
+.centerText {
+    text-align: center;
+}

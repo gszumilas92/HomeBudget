@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { WeekService } from "./manage-weeks.service";
 
 import { Observable } from "rxjs/Observable";
@@ -29,21 +29,26 @@ export class ManageWeeksComponent implements OnInit {
 
   deleteItemFromIncomes(id) {
     this.weekService.deleteIncome(id)
+    this.getIncomes()
   }
 
   deleteItemFromOutcomes(id) {
     this.weekService.deleteOutcome(id)
+    this.getOutcomes();
   }
+
+  editOutcome(id) {
+    
+  }
+
 
   //Lifecycle Hooks
   ngOnInit() {
     this.getIncomes()
     this.getOutcomes()
 
-    //TODO change interval to something else
-    const checkForUpdates = Observable.interval(300);
-    checkForUpdates.subscribe(
-      () => {
+    this.weekService.incomesChanged.subscribe(
+      (form) => {
         this.getIncomes()
         this.getOutcomes()
       }

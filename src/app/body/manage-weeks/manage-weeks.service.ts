@@ -1,35 +1,40 @@
-import { EventEmitter } from "@angular/core";
+
+import { Subject } from "rxjs/Subject";
 
 export class WeekService {
     
-    incomesChanged = new EventEmitter();
+    incomesChanged = new Subject();
 
     private incomes = [
         {
             name: "car",
             value: 1200,
             description: "Description",
-            id: 0
+            id: 0,
+            type: "income"
         },
         {
             name: "car",
             value: 1200,
-            description: "Descrwdwdiption",
-            id: 1
+            description: "Description",
+            id: 1,
+            type: "income"
         }
     ]
     private outcomes = [
         {
             name: "car",
             value: 1200,
-            description: "Desdwededcription",
-            id: 0
+            description: "Biały samochód Karoliny",
+            id: 0,
+            type: "outcome"
         },
         {
             name: "car",
             value: 1200,
             description: "Desc",
-            id: 1
+            id: 1,
+            type: "outcome"
         }
   ]
 
@@ -47,7 +52,7 @@ export class WeekService {
   }
 
   addOutcome(outcome){
-    outcome.id = this.outcomes[this.outcomes.length - 1].id + 1
+    outcome.id = this.outcomes.length
     this.outcomes.push(outcome)
   }
 
