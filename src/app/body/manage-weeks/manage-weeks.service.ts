@@ -7,6 +7,7 @@ export class WeekService {
 
     private incomes = [
         {
+            date: new Date(),
             name: "car",
             value: 1200,
             description: "Description",
@@ -14,6 +15,7 @@ export class WeekService {
             type: "income"
         },
         {
+            date: new Date(),
             name: "car",
             value: 1200,
             description: "Description",
@@ -23,6 +25,7 @@ export class WeekService {
     ]
     private outcomes = [
         {
+            date: new Date(),
             name: "car",
             value: 1200,
             description: "Biały samochód Karoliny",
@@ -30,6 +33,7 @@ export class WeekService {
             type: "outcome"
         },
         {
+            date: new Date(),
             name: "car",
             value: 1200,
             description: "Desc",
@@ -38,29 +42,31 @@ export class WeekService {
         }
   ]
 
-  getIncomes() {
-      return Promise.resolve([...this.incomes]);
-  }
+    getIncomes() {
+        return Promise.resolve([...this.incomes]);
+    }
 
-  getOutcomes(){
-      return Promise.resolve([...this.outcomes]);
-  }
+    getOutcomes(){
+        return Promise.resolve([...this.outcomes]);
+    }
 
-  addIncome(income){
-    income.id = this.incomes.length
-    this.incomes.push(income)
-  }
+    addIncome(income){
+        income.date = new Date()
+        income.id = this.incomes.length
+        this.incomes.push(income)
+    }
 
-  addOutcome(outcome){
-    outcome.id = this.outcomes.length
-    this.outcomes.push(outcome)
-  }
+    addOutcome(outcome){
+        outcome.date = new Date()
+        outcome.id = this.outcomes.length
+        this.outcomes.push(outcome)
+    }
 
-  deleteIncome(id){
-    this.incomes = this.incomes.filter(item => id !== item.id)
-  }
+    deleteIncome(id){
+        this.incomes = this.incomes.filter(item => id !== item.id)
+    }
 
-  deleteOutcome(id){
-    this.outcomes = this.outcomes.filter(item => id !== item.id)
-  }
-}
+    deleteOutcome(id){
+        this.outcomes = this.outcomes.filter(item => id !== item.id)
+    }
+    }

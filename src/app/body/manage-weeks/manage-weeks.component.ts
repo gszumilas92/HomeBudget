@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { WeekService } from "./manage-weeks.service";
-
+import { DatePipe } from '@angular/common';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/Rx';
 

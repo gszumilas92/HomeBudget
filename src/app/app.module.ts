@@ -27,7 +27,9 @@ import { WeekService } from "./body/manage-weeks/manage-weeks.service";
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [WeekService],
+  providers: [
+    WeekService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
